@@ -1,0 +1,61 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<script type="text/javascript" src="js/move2.js"></script>
+<title></title>
+<style type="text/css">
+*{
+	padding:0px;
+	margin: 0px;
+}
+#ull{
+	width: 400px;
+	height: 400px;
+	border:1px solid #000;
+	margin: 0px  auto;
+	overflow: hidden;
+}
+#ull li{
+	border-bottom: 1px grey dashed;
+	padding: 5px;
+	list-style: none;
+	overflow: hidden;
+	filter:alpha(opacity:0); 
+  opacity: 0; 
+}
+
+</style>
+<script>
+window.onload =  function  () {
+	var oBtn =document.getElementById('btn1');
+	var oTxt =document.getElementById('txt1');
+  var oUll =document.getElementById('ull');
+  oBtn.onclick = function(){
+  	var oli = document.createElement('li');
+  	oli.innerHTML = oTxt.value;
+  	oTxt.value = '';
+  	if (oUll.children.length > 0) {
+  		oUll.insertBefore(oli,oUll.children[0]);
+  	} 
+  	else{
+  		oUll.appendChild(oli);
+  	};
+  	var iHeight = oli.offsetHeight;
+  	oli.style.height ='0';
+    startMove(oli,{height:iHeight},function(){
+    	startMove(oli,{opacity:100});
+    });
+
+  }
+}
+</script>
+</head>
+<body>
+<textarea id="txt1" rows="4" cols="50"></textarea>
+<input id="btn1" type="button" value="发布" />
+  <ul id="ull">
+  	<li>舒丽琦</li>
+  </ul>
+</body>
+</html>
